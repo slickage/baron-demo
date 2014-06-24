@@ -21,9 +21,7 @@
     margin: 10px; 
     width: 13px; 
 } 
-.form div { 
-    display: block; 
-} 
+
 .form input, form textarea, form select{ 
     padding: 3px; 
     width: 100%; 
@@ -57,6 +55,24 @@
     margin-bottom: 5px; 
 } 
 
+.json-area {
+  min-height:500px;
+}
+
+.li-desc {
+  width: 60% !important;
+  display: inline-block !important;
+}
+
+.li-quantity {
+  width: 13% !important;
+  display: inline-block !important;
+}
+
+.li-amount {
+  width: 19% !important;
+  display: inline-block !important;
+}
 
 h1 {
    font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, sans-serif;
@@ -70,6 +86,13 @@ h1 {
 html {
   width: 100%;
   height: 100%;
+}
+
+pre {
+  background-color: transparent !important;
+  border: none !important;
+  border-radius: none !important;
+  font-size: 16px;
 }
 
 body {
