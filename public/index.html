@@ -102,6 +102,24 @@
       var lineItems;
       var lineItemCount = 1;
 
+      function sortObject(o) {
+        var sorted = {},
+        key, a = [];
+
+        for (key in o) {
+          if (o.hasOwnProperty(key)) {
+            a.push(key);
+          }
+        }
+
+        a.sort();
+
+        for (key = 0; key < a.length; key++) {
+          sorted[a[key]] = o[a[key]];
+        }
+        return sorted;
+      }
+
       function updateInvoiceJSON() {
         if (lineItems) {
           invoice.line_items = [];
@@ -111,7 +129,7 @@
             }
           });
         }
-        var invoiceStr = JSON.stringify(invoice, null, 2);
+        var invoiceStr = JSON.stringify(sortObject(invoice), null, 2);
         invoiceStr = invoiceStr.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
         var jsonHTML = '<pre class="prettyprint">var invoice = ' + invoiceStr + ';</pre>';
         $('#invoice-pre').html(jsonHTML);
@@ -119,7 +137,9 @@
       }
 
       function removeLineItem(num) {
-        lineItems[num] = undefined;
+        if (lineItems && lineItems[num]) {
+          lineItems[num] = undefined;
+        }
         $('#line-item-' + num).remove();
         updateInvoiceJSON();
       }
@@ -166,7 +186,7 @@
       });
 
       $('#min-confirmations').on('click change keyup', function() {
-        invoice.min_confirmations = Number($(this).val()) === -1 ? undefined : Number($(this).val()); 
+        invoice.min_confirmations = Number($(this).val()) === -1 ? undefined : Number($(this).val());
         updateInvoiceJSON();
       });
 
