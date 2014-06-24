@@ -1,0 +1,86 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Baron Live Demo</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta http-equiv="cache-control" content="max-age=0" />
+    <meta http-equiv="cache-control" content="no-cache" />
+    <meta http-equiv="expires" content="0" />
+    <meta http-equiv="expires" content="Tue, 01 Jan 1980 1:00:00 GMT" />
+    <meta http-equiv="pragma" content="no-cache" />
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/style.css" rel="stylesheet">
+  </head>
+  <body>
+    <div class="container">
+
+      <div class="row underline">
+        <div class="col-md-12">
+          <h1>Baron Live Demo</h1>
+        </div>
+      </div>
+
+      <div class="row spacer">
+        <div class="col-sm-12">
+
+        <form id="form" class="form" name="form" action="/invoice" method="post" enctype="application/x-www-form-urlencoded" accept-charset="UTF-8">
+          <div class="content">
+            <div class="intro">
+              <p>Use the form below to create an invoice within Baron.</p>
+            </div>
+            <div id="section0" >
+            </div>
+            <h2 class="section">Required Fields</h2>
+            <div id="section1" >
+              <div class="form-group">
+                <label for="currency">Currency</label>
+                <span>BTC</span>
+                <input type="radio" value="BTC" id="currency-0" name="currency" required>
+                <span>USD</span>
+                <input type="radio" value="USD" id="currency-1" name="currency" required>
+              </div>
+              <div class="form-group">
+                <label for="min-confirmations">Minimum Confirmations</label>
+                <select class="form-control" id="min-confirmations"  name="min-confirmations" required>
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                  <option value="5">5</option>
+                  <option value="6">6</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="line-item-desc-0">Line Items</label>
+                <input class="form-control" style="width:60%; display:inline-block;" type="text" id="line-item-desc-0" name="line-item-desc-0" placeholder="Description of the goods or services being purchased" required>
+                <input class="form-control" style="width:18%;display:inline-block;" type="text" id="line-item-quantity-0" name="line-item-quantity-0" placeholder="Quantity" required>
+                <input class="form-control" style="width:18%; display:inline-block;" type="text" id="line-item-amount-0" name="line-item-amount-0" placeholder="Unit Price" required>
+              </div>
+            </div>
+            <h2 class="section">Optional Fields</h2>
+            <div id="section2">
+              <div class="form-group">
+                <label for="title">Title</label>
+                <input class="form-control" type="text" id="title" name="title" placeholder="Title will replace the invoices webpage title">
+              </div>
+              <div class="form-group">
+                <label for="expiration">Invoice Expiration Timestamp (UTC)</label>
+                <input class="form-control" type="text" id="expiration" name="expiration" placeholder="ex: 1403576512000"></div>
+              <div class="form-group">
+                <label for="text">Invoice Text</label>
+                <textarea class="form-control" id="text" name="text" placeholder="Text or HTML to display below the invoice." wrap="hard"></textarea>
+              </div>
+              <div class="form-group">
+                <input class="btn btn-lg btn-primary" type="submit" id="submit" name="submit">
+              </div>
+            </div>
+          </div>
+        </form>
+
+        </div>
+      </div>
+
+    </div>
+  </body>
+</html>
