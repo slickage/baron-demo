@@ -165,7 +165,7 @@
         updateInvoiceJSON();
       });
 
-      $('#min-confirmations').click(function() {
+      $('#min-confirmations').on('click change keyup', function() {
         invoice.min_confirmations = Number($(this).val()) === -1 ? undefined : Number($(this).val()); 
         updateInvoiceJSON();
       });
