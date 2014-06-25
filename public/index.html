@@ -13,74 +13,72 @@
     <link href="/css/prettify.css" rel="stylesheet">
     <link href="/css/style.css" rel="stylesheet">
     <link href="/css/bootstrap-datetimepicker.css" rel="stylesheet">
+    <link href="/css/bootstrapValidator.min.css" rel="stylesheet">
   </head>
   <body>
     <div class="container">
 
       <div class="row underline">
         <div class="col-md-12">
-          <h1>Baron Live Demo</h1>
+          <h1>Baron Demo</h1>
         </div>
       </div>
 
       <div class="row spacer">
         <div class="col-sm-12 col-md-6">
+        Create an Invoice
           <form id="form" class="form" name="form" action="#">
             <div class="content">
-              <div class="intro">
-                <p>Use the form below to create an invoice within Baron.</p>
+              <div class="form-group">
+                <label for="currency">Currency</label>
+                <span>BTC</span>
+                <input type="radio" value="BTC" id="currency-0" name="currency" required>
+                <span>USD</span>
+                <input type="radio" value="USD" id="currency-1" name="currency" required>
               </div>
-              <h2 class="section">Required Fields</h2>
-              <div id="section1">
-                <div class="form-group">
-                  <label for="currency">Currency</label>
-                  <span>BTC</span>
-                  <input type="radio" value="BTC" id="currency-0" name="currency" required>
-                  <span>USD</span>
-                  <input type="radio" value="USD" id="currency-1" name="currency" required>
-                </div>
-                <div class="form-group">
-                  <label for="min-confirmations">Minimum Confirmations</label>
-                  <select class="form-control" id="min-confirmations"  name="min-confirmations" required>
-                    <option value="-1" default>Select minimum confirmations</option>
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                    <option value="5">5</option>
-                    <option value="6">6</option>
-                  </select>
-                </div>
-                <div id="line-items" class="form-group">
-                  <label for="line-item-desc">Line Items</label>
-                  <span id="line-item-0">
-                    <input class="form-control li-desc" type="text" id="line-item-desc-0" name="line-item-desc-0" placeholder="Description of goods or services" required />
-                    <input class="form-control li-quantity" type="text" id="line-item-quantity-0" name="line-item-quantity-0" placeholder="Quantity" required />
-                    <input class="form-control li-amount" type="text" id="line-item-amount-0" name="line-item-amount-0" placeholder="Unit Price" required />
-                  </span>
-                </div>
-                <a href="javascript:void(0);" onclick="addLineItem();"><span class="glyphicon glyphicon-plus-sign"></span> Add a new line item</a>
+              <div class="form-group">
+                <label for="min-confirmations">Minimum Confirmations</label>
+                <select class="form-control" id="min-confirmations"  name="min-confirmations" required>
+                  <option value="-1" default>Select minimum confirmations</option>
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                  <option value="5">5</option>
+                  <option value="6">6</option>
+                </select>
               </div>
-              <h2 class="section">Optional Fields</h2>
-              <div id="section2">
-                <div class="form-group">
-                  <label for="title">Title</label>
-                  <input class="form-control" type="text" id="title" name="title" placeholder="Title will replace the invoices webpage title">
-                </div>
-                <div class="form-group">
-                  <label for="expiration">Invoice Expiration Time</label>
-                  <input id="expiration" name="expiration" type='text' class="form-control" />
-                </div>
-                <div class="form-group">
-                  <label for="text">Invoice Text</label>
-                  <textarea class="form-control" id="text" name="text" placeholder="Text or HTML to display below the invoice." wrap="hard"></textarea>
-                </div>
-                <div class="form-group">
-                  <input class="btn btn-lg btn-primary" type="submit" id="submit" name="submit">
-                </div>
+              <div id="line-items" class="form-group">
+                <label for="line-item-desc">Line Items</label>
+                <span id="line-item-0">
+                  <input class="form-control li-desc" type="text" id="line-item-desc-0" name="line-item-desc-0" placeholder="Description of goods or services" required />
+                  <input class="form-control li-quantity" type="text" id="line-item-quantity-0" name="line-item-quantity-0" placeholder="Quantity" required />
+                  <input class="form-control li-amount" type="text" id="line-item-amount-0" name="line-item-amount-0" placeholder="Unit Price" required />
+                </span>
+              </div>
+              <a href="javascript:void(0);" onclick="addLineItem();"><span class="glyphicon glyphicon-plus-sign"></span> Add a new line item</a>
+              <br /><br />
+              <div class="form-group">
+                <label for="title">Title</label>
+                <input class="form-control" type="text" id="title" name="title" placeholder="Title will replace the invoices webpage title">
+              </div>
+              <div class="form-group">
+                <label for="expiration">Invoice Expiration Time</label>
+                <input id="expiration" name="expiration" type='text' class="form-control" />
+              </div>
+              <div class="form-group">
+                <label for="text">Invoice Text</label>
+                <textarea class="form-control" id="text" name="text" placeholder="Text or HTML to display below the invoice." wrap="hard"></textarea>
+              </div>
+              <div class="form-group">
+                <input class="btn btn-lg btn-primary" type="submit" id="submit" name="submit">
               </div>
             </div>
           </form>
+          <p class="xsmall-text">
+           Submit the form above to create an invoice within Baron. Invoices can be paid using a bitcoin wallet connected to the bitcoin testnet. For free testnet bitcoin please visit a testnet faucet such as <a href="http://faucet.xeno-genesis.com" target="_blank">http://faucet.xeno-genesis.com</a>. 
+            
+          </p>
         </div>
 
         <div class="col-sm-12 col-md-6">
@@ -95,142 +93,9 @@
     <script src="/js/jquery-2.1.1.min.js" type="text/javascript"></script>
     <script src="/js/prettify.js" type="text/javascript"></script>
     <script src="/js/moment.js" type="text/javascript"></script>
-    <script src="/js/bootstrap.js"></script>
+    <script src="/js/bootstrap.js" type="text/javascript"></script>
+    <script src="/js/bootstrapValidator.min.js" type="text/javascript"></script>
     <script src="/js/bootstrap-datetimepicker.js" type="text/javascript"></script>
-    <script type="text/javascript">
-      var invoice = {};
-      var lineItems;
-      var lineItemCount = 1;
-
-      $('#form').on('submit', function(e){
-          e.preventDefault();
-          $.ajax({
-             type: 'POST',
-             url: '/invoice',
-             data: invoice,
-             success: function() {
-               alert('success');
-             },
-             error: function(jqXHR) {
-               if (jqXHR.status === 200) {
-                 alert('Invoice created! ' + jqXHR.responseText);
-               }
-               else {
-                 alert('Something bad happend' + jqXHR.responseText);
-               }
-             }
-          });
-      });
-
-      function sortObject(o) {
-        var sorted = {},
-        key, a = [];
-
-        for (key in o) {
-          if (o.hasOwnProperty(key)) {
-            a.push(key);
-          }
-        }
-
-        a.sort();
-
-        for (key = 0; key < a.length; key++) {
-          sorted[a[key]] = o[a[key]];
-        }
-        return sorted;
-      }
-
-      function updateInvoiceJSON() {
-        if (lineItems) {
-          invoice.line_items = [];
-          lineItems.forEach(function(item) {
-            if (item) {
-              invoice.line_items.push(item);
-            }
-          });
-        }
-        var invoiceStr = JSON.stringify(sortObject(invoice), null, 2);
-        invoiceStr = invoiceStr.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
-        var jsonHTML = '<pre class="prettyprint">var invoice = ' + invoiceStr + ';</pre>';
-        $('#invoice-pre').html(jsonHTML);
-        prettyPrint();
-      }
-
-      function removeLineItem(num) {
-        if (lineItems && lineItems[num]) {
-          lineItems[num] = undefined;
-        }
-        $('#line-item-' + num).remove();
-        updateInvoiceJSON();
-      }
-
-      var lineItemDescChange = function (num) {
-        lineItems = lineItems ? lineItems : [];
-        lineItems[num] = lineItems[num] ? lineItems[num] : {};
-        lineItems[num].description = $('#line-item-desc-' + num).val();
-        updateInvoiceJSON();
-      };
-
-      var lineItemQuantityChange = function (num) {
-        lineItems = lineItems ? lineItems : [];
-        lineItems[num] = lineItems[num] ? lineItems[num] : {};
-        lineItems[num].quantity = Number($('#line-item-quantity-' + num).val());
-        updateInvoiceJSON();
-      };
-
-      var lineItemAmountChange = function (num) {
-        lineItems = lineItems ? lineItems : [];
-        lineItems[num] = lineItems[num] ? lineItems[num] : {};
-        lineItems[num].amount = Number($('#line-item-amount-' + num).val());
-        updateInvoiceJSON();
-      };
-
-      function addLineItem() {
-        var html = '<span id="line-item-' + lineItemCount + '">';
-        html += '<input class="form-control li-desc" style="margin-top:5px;" type="text" id="line-item-desc-' + lineItemCount + '" name="line-item-desc-' + lineItemCount + '" placeholder="Description of goods or services" required /> ';
-        html += '<input class="form-control li-quantity" type="text" id="line-item-quantity-' + lineItemCount + '" name="line-item-quantity-' + lineItemCount + '" placeholder="Quantity" required/> ';
-        html += '<input class="form-control li-amount" type="text" id="line-item-amount-' + lineItemCount + '" name="line-item-amount-' + lineItemCount + '" placeholder="Unit Price" required /> ';
-        html += '<a href="javascript:void(0);" onclick="removeLineItem(' + lineItemCount + ');"><span class="glyphicon glyphicon-minus-sign"></span></a>';
-        html += '</span>';
-        $('#line-items').append(html);
-        var index = lineItemCount;
-        $('#line-item-desc-' + lineItemCount).on('change keyup', function() { lineItemDescChange(index); });
-        $('#line-item-quantity-' + lineItemCount).on('change keyup', function() { lineItemQuantityChange(index); });
-        $('#line-item-amount-' + lineItemCount).on('change keyup', function() { lineItemAmountChange(index); });
-        lineItemCount++;
-      }
-
-      $('input:radio[name=currency]').click(function() {
-        invoice.currency = $(this).val() === '' ? undefined : $(this).val();
-        updateInvoiceJSON();
-      });
-
-      $('#min-confirmations').on('click change keyup', function() {
-        invoice.min_confirmations = Number($(this).val()) === -1 ? undefined : Number($(this).val());
-        updateInvoiceJSON();
-      });
-
-      $('#title').on('change keyup', function() {
-        invoice.title = $(this).val() === '' ? undefined : $(this).val();
-        updateInvoiceJSON();
-      });
-
-      $('#text').on('change keyup', function() {
-        invoice.text = $(this).val() === '' ? undefined : $(this).val();
-        updateInvoiceJSON();
-      });
-
-      $('#expiration').on('blur change keyup', function() {
-        var timestamp = Date.parse($(this).val());
-        invoice.expiration = timestamp ? timestamp : undefined;
-        updateInvoiceJSON();
-      });
-
-      $('#line-item-desc-0').on('change keyup', function() { lineItemDescChange(0); });
-      $('#line-item-quantity-0').on('change keyup', function() { lineItemQuantityChange(0); });
-      $('#line-item-amount-0').on('change keyup', function() { lineItemAmountChange(0); });
-      $('#expiration').datetimepicker();
-      prettyPrint();
-    </script>
+    <script src="/js/baron-demo.js" type="text/javascript"></script>
   </body>
 </html>

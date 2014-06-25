@@ -10,7 +10,7 @@ var baronInvoiceRoute = 'http://localhost:3000/invoices';
 var baronApiKey = 'youshouldreallychangethis';
 var port = 3333;
 
-// Rate Limiting config (1 request every 60 seconds)
+// Rate Limiting config (5 request every 60 seconds)
 var rules = [
   ['/invoice', 'post', 5, 60, true]
 ];
@@ -26,7 +26,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.post('/invoice', function(req, res) {
   var invoice = req.body;
   invoice.api_key = baronApiKey;
-  request.post({ url: baronInvoiceRoute, form:invoice }, function(err, baronRes, body) {
+  request.post({ url: baronInvoiceRoute, form: invoice }, function(err, baronRes, body) {
     if (!err && baronRes && baronRes.statusCode && baronRes.statusCode === 200) {
       res.status(200).write(body);
       res.end();
