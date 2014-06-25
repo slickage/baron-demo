@@ -1,6 +1,6 @@
 # Baron Demo
 
-This is a small app that interfaces with Baron. It allows users to create invoices via a web form, rate limiting invoice creation to 5 per minute.
+This is a small app that interfaces with Baron and allows users to create invoices via a web form.
 
 ## Invoice Creation Form
 ![Baron Demo Screen Shot](http://i.imgur.com/rjPziRJ.png)
