@@ -25,7 +25,7 @@
 
       <div class="row spacer">
         <div class="col-sm-12 col-md-6">
-          <form id="form" class="form" name="form" action="/invoice" method="post" enctype="application/x-www-form-urlencoded" accept-charset="UTF-8">
+          <form id="form" class="form" name="form" action="#">
             <div class="content">
               <div class="intro">
                 <p>Use the form below to create an invoice within Baron.</p>
@@ -101,6 +101,26 @@
       var invoice = {};
       var lineItems;
       var lineItemCount = 1;
+
+      $('#form').on('submit', function(e){
+          e.preventDefault();
+          $.ajax({
+             type: 'POST',
+             url: '/invoice',
+             data: invoice,
+             success: function() {
+               alert('success');
+             },
+             error: function(jqXHR) {
+               if (jqXHR.status === 403) {
+                 alert('Custom message. ' + jqXHR.responseText);
+               }
+               else {
+                 alert(jqXHR.responseText);
+               }
+             }
+          });
+      });
 
       function sortObject(o) {
         var sorted = {},
