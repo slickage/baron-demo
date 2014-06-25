@@ -112,11 +112,11 @@
                alert('success');
              },
              error: function(jqXHR) {
-               if (jqXHR.status === 403) {
-                 alert('Custom message. ' + jqXHR.responseText);
+               if (jqXHR.status === 200) {
+                 alert('Invoice created! ' + jqXHR.responseText);
                }
                else {
-                 alert(jqXHR.responseText);
+                 alert('Something bad happend' + jqXHR.responseText);
                }
              }
           });
