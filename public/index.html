@@ -13,7 +13,6 @@
     <link href="/css/prettify.css" rel="stylesheet">
     <link href="/css/style.css" rel="stylesheet">
     <link href="/css/bootstrap-datetimepicker.css" rel="stylesheet">
-    <link href="/css/bootstrapValidator.min.css" rel="stylesheet">
   </head>
   <body>
     <div class="container">
@@ -32,14 +31,15 @@
               <div class="form-group">
                 <label for="currency">Currency</label>
                 <span>BTC</span>
-                <input type="radio" value="BTC" id="currency-0" name="currency" required>
+                <input type="radio" value="BTC" id="currency-btc" name="currency" required="true">
                 <span>USD</span>
-                <input type="radio" value="USD" id="currency-1" name="currency" required>
+                <input type="radio" value="USD" id="currency-usd" name="currency" required="true">
+                <span id="currency-req" class="xsmall-text red" style="display: none;">* Currency is required</span>
               </div>
               <div class="form-group">
                 <label for="min-confirmations">Minimum Confirmations</label>
-                <select class="form-control" id="min-confirmations"  name="min-confirmations" required>
-                  <option value="-1" default>Select minimum confirmations</option>
+                <select class="form-control" id="min-confirmations"  name="min-confirmations" required="true">
+                  <option value="" default>Select minimum confirmations</option>
                   <option value="1">1</option>
                   <option value="2">2</option>
                   <option value="3">3</option>
@@ -47,31 +47,35 @@
                   <option value="5">5</option>
                   <option value="6">6</option>
                 </select>
+                <span id="min-conf-req" class="xsmall-text red" style="display: none;">* Minimum confirmations is required</span>
               </div>
               <div id="line-items" class="form-group">
                 <label for="line-item-desc">Line Items</label>
                 <span id="line-item-0">
-                  <input class="form-control li-desc" type="text" id="line-item-desc-0" name="line-item-desc-0" placeholder="Description of goods or services" required />
-                  <input class="form-control li-quantity" type="text" id="line-item-quantity-0" name="line-item-quantity-0" placeholder="Quantity" required />
-                  <input class="form-control li-amount" type="text" id="line-item-amount-0" name="line-item-amount-0" placeholder="Unit Price" required />
+                  <span><input class="form-control li-desc" type="text" id="line-item-desc-0" name="line-item-desc-0" placeholder="Description of goods or services" required="true" /></span>
+                  <span><input class="form-control li-quantity" type="text" id="line-item-quantity-0" name="line-item-quantity-0" placeholder="Quantity" required="true" /></span>
+                  <span><input class="form-control li-amount" type="text" id="line-item-amount-0" name="line-item-amount-0" placeholder="Unit Price" required="true" /></span>
                 </span>
               </div>
+              <span id="line-item-req" class="xsmall-text red" style="display: none;">* At least one line item is required<br /></span>
+              <span id="line-item-missing" class="xsmall-text red" style="display: none;">* Ensure that all line item propties are set<br /></span>
               <a href="javascript:void(0);" onclick="addLineItem();"><span class="glyphicon glyphicon-plus-sign"></span> Add a new line item</a>
               <br /><br />
               <div class="form-group">
-                <label for="title">Title</label>
+                <label for="title">Title (optional)</label>
                 <input class="form-control" type="text" id="title" name="title" placeholder="Title will replace the invoices webpage title">
               </div>
               <div class="form-group">
-                <label for="expiration">Invoice Expiration Time</label>
+                <label for="expiration">Invoice Expiration Time (optional)</label>
                 <input id="expiration" name="expiration" type='text' class="form-control" />
               </div>
               <div class="form-group">
-                <label for="text">Invoice Text</label>
+                <label for="text">Invoice Text (optional)</label>
                 <textarea class="form-control" id="text" name="text" placeholder="Text or HTML to display below the invoice." wrap="hard"></textarea>
               </div>
-              <div class="form-group">
-                <input class="btn btn-lg btn-primary" type="submit" id="submit" name="submit">
+              <div class="form-group" style="text-align: center;">
+                <input class="btn btn-lg btn-primary" style="width:49%" type="submit" id="submit" name="submit" />
+                <input class="btn btn-lg btn-default" style="width:49%" type="reset" id="reset" name="reset" />
               </div>
             </div>
           </form>
@@ -94,7 +98,6 @@
     <script src="/js/prettify.js" type="text/javascript"></script>
     <script src="/js/moment.js" type="text/javascript"></script>
     <script src="/js/bootstrap.js" type="text/javascript"></script>
-    <script src="/js/bootstrapValidator.min.js" type="text/javascript"></script>
     <script src="/js/bootstrap-datetimepicker.js" type="text/javascript"></script>
     <script src="/js/baron-demo.js" type="text/javascript"></script>
   </body>

@@ -36,7 +36,7 @@ app.post('/invoice', function(req, res) {
       res.end();
     }
     else {
-      res.status(baronRes.statusCode).write(err.message);
+      res.status(baronRes.statusCode).write(err ? err.message : 'Unknown Error');
       res.end();
     }
   });
