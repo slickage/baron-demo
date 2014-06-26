@@ -4,11 +4,11 @@
 .pln { color: #000 }  /* plain text */
 
 @media screen {
-  .str { color: #080 }  /* string content */
+  .str { color: #4070a0 }  /* string content */
   .kwd { color: #008 }  /* a keyword */
   .com { color: #800 }  /* a comment */
   .typ { color: #606 }  /* a type name */
-  .lit { color: #066 }  /* a literal value */
+  .lit { color: #40a070 }  /* a literal value */
   /* punctuation, lisp open bracket, lisp close bracket */
   .pun, .opn, .clo { color: #660 }
   .tag { color: #008 }  /* a markup tag name */

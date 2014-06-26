@@ -199,6 +199,10 @@ a:hover, a:active {
   margin-top:30px;
 }
 
+.spacer-10 {
+  margin-top: 10px;
+}
+
 .spacer-5 {
   margin-top: 5px;
 }

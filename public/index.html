@@ -23,13 +23,6 @@
         </div>
       </div>
 
-      <div id="status-banner" class="row" style="display:none;">
-        <div id="status-banner-wrap" class="col-sm-12 alert alert-success xsmall-text alert-box">
-        <span id="status-banner-text"></span>
-        <span onclick="$('#status-banner').hide()" class="glyphicon glyphicon-remove dismiss-icon"></span> 
-        </div>
-      </div>
-
       <div class="row spacer">
         <div class="col-sm-12 col-md-6">
         Create an Invoice
@@ -59,9 +52,9 @@
               <div id="line-items" class="form-group">
                 <label for="line-item-desc">Line Items</label>
                 <span id="line-item-0">
-                  <span><input class="form-control li-desc" type="text" id="line-item-desc-0" name="line-item-desc-0" placeholder="Description of goods or services" required="true" /></span>
-                  <span><input class="form-control li-quantity" type="text" id="line-item-quantity-0" name="line-item-quantity-0" placeholder="Quantity" required="true" /></span>
-                  <span><input class="form-control li-amount" type="text" id="line-item-amount-0" name="line-item-amount-0" placeholder="Unit Price" required="true" /></span>
+                  <span><input class="form-control li-desc" maxlength="255" type="text" id="line-item-desc-0" name="line-item-desc-0" placeholder="Description of goods or services" required="true" /></span>
+                  <span><input class="form-control li-quantity" maxlength="10" type="text" id="line-item-quantity-0" name="line-item-quantity-0" placeholder="Quantity" required="true" /></span>
+                  <span><input class="form-control li-amount" maxlength="10" type="text" id="line-item-amount-0" name="line-item-amount-0" placeholder="Unit Price" required="true" /></span>
                 </span>
               </div>
               <span id="line-item-req" class="xsmall-text red" style="display: none;">* At least one line item is required<br /></span>
@@ -87,7 +80,7 @@
             </div>
           </form>
           <p class="xsmall-text">
-           Submit the form above to create an invoice within Baron. Invoices can be paid using a bitcoin wallet connected to the bitcoin testnet. For free testnet bitcoin please visit a testnet faucet such as <a href="http://faucet.xeno-genesis.com" target="_blank">http://faucet.xeno-genesis.com</a>. 
+           Submit the form above to create an invoice within Baron. Invoices can be paid using a bitcoin wallet connected to the bitcoin testnet. For free testnet bitcoin please visit a testnet faucet such as: <a href="http://faucet.xeno-genesis.com" target="_blank" style=" white-space: nowrap">http://faucet.xeno-genesis.com</a>. 
             
           </p>
         </div>
@@ -101,6 +94,20 @@
       </div>
 
     </div>
+
+    <div class="modal fade" id="result-modal" tabindex="-1" role="dialog" aria-labelledby="result-modal" aria-hidden="true">
+      <div class="modal-dialog">
+        <div id="result-status" class="modal-content panel panel-success">
+          <div class="modal-header panel-heading">
+            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            <h3 id="result-title" class="modal-title">Invoice Successfully Created</h4>
+          </div>
+          <div id="result-body" class="modal-body xsmall-text">
+          </div>
+        </div>
+      </div>
+    </div>
+
     <script src="/js/jquery-2.1.1.min.js" type="text/javascript"></script>
     <script src="/js/prettify.js" type="text/javascript"></script>
     <script src="/js/moment.js" type="text/javascript"></script>

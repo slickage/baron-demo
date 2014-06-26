@@ -7,11 +7,12 @@ function init() {
   $('#line-item-quantity-0').on('change keyup blur', function() { lineItemQuantityChange(0); });
   $('#line-item-amount-0').on('change keyup blur', function() { lineItemAmountChange(0); });
   $('#expiration').datetimepicker();
+  $('#result-modal').modal({ backdrop: true, show: false });
   prettyPrint();
 }
 
 //Form Reset
-$('#form').on('reset', function(e){
+$('#form').on('reset', function(){
   invoice = {};
   lineItems = null;
   lineItemCount = 1;
@@ -25,8 +26,7 @@ $('#form').on('reset', function(e){
   updateInvoiceJSON();
 });
 
-// Form Submit
-$('#form').on('submit', function(e){
+function invoiceIsInvalid() {
   var invalid = false;
   if (!invoice.currency) {
     $('#currency-req').show();
@@ -52,7 +52,12 @@ $('#form').on('submit', function(e){
       invalid = true;
     }
   }
-  if (invalid) {
+  return invalid;
+}
+
+// Form Submit
+$('#form').on('submit', function(e){
+  if (invoiceIsInvalid()) {
     return e.preventDefault();
   }
   e.preventDefault();
@@ -62,11 +67,18 @@ $('#form').on('submit', function(e){
     data: invoice,
     cache: false,
     success: function(res) {
-      var successText = 'Invoice successfully created. View Invoice <a href="' + res.invoiceUrl + '" target="_blank">' + res.invoiceId + '</a>';
-      $('#status-banner-wrap').removeClass('alert-danger');
-      $('#status-banner-wrap').addClass('alert-success');
-      $('#status-banner-text').html(successText);
-      $('#status-banner').show();
+      var invoiceStr = JSON.stringify(sortObject(invoice), null, 2);
+      invoiceStr = invoiceStr.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+      var jsonHTML = '<pre class="prettyprint">var invoice = ' + invoiceStr + ';</pre>';
+      var successHTML = 'Invoice has been successfully created within Baron. View Invoice <a href="' + res.invoiceUrl + '" target="_blank">' + res.invoiceId + '</a>';
+      successHTML += '<div class="thin-underline spacer-10"></div><div class="small-text spacer-10">Submitted Invoice JSON</div>';
+      successHTML += jsonHTML + '';
+      $('#result-title').text('Invoice Successfully Created');
+      $('#result-status').removeClass('panel-danger');
+      $('#result-status').addClass('panel-success');
+      $('#result-body').html(successHTML);
+      prettyPrint();
+      $('#result-modal').modal('show');
       $('#reset').click();
     },
     error: function(jqXHR) {
@@ -77,10 +89,11 @@ $('#form').on('submit', function(e){
       else {
         error += jqXHR.responseText;
       }
-      $('#status-banner-wrap').removeClass('alert-success');
-      $('#status-banner-wrap').addClass('alert-danger');
-      $('#status-banner-text').text(error);
-      $('#status-banner').show();
+      $('#result-title').text('An Error Occured');
+      $('#result-status').removeClass('panel-success');
+      $('#result-status').addClass('panel-danger');
+      $('#result-body').text(error);
+      $('#result-modal').modal('show');
     }
   });
 });
@@ -189,9 +202,9 @@ var lineItemAmountChange = function (num) {
 
 function addLineItem() {
   var html = '<span id="line-item-' + lineItemCount + '">';
-  html += '<span><input class="form-control li-desc spacer-5" type="text" id="line-item-desc-' + lineItemCount + '" name="line-item-desc-' + lineItemCount + '" placeholder="Description of goods or services" required="true" /></span>&nbsp;';
-  html += '<span><input class="form-control li-quantity" type="text" id="line-item-quantity-' + lineItemCount + '" name="line-item-quantity-' + lineItemCount + '" placeholder="Quantity" required="true"/></span>&nbsp;';
-  html += '<span><input class="form-control li-amount" type="text" id="line-item-amount-' + lineItemCount + '" name="line-item-amount-' + lineItemCount + '" placeholder="Unit Price" required="true" /></span>&nbsp;';
+  html += '<span><input class="form-control li-desc spacer-5" maxlength="255" type="text" id="line-item-desc-' + lineItemCount + '" name="line-item-desc-' + lineItemCount + '" placeholder="Description of goods or services" required="true" /></span>&nbsp;';
+  html += '<span><input class="form-control li-quantity" maxlength="10" type="text" id="line-item-quantity-' + lineItemCount + '" name="line-item-quantity-' + lineItemCount + '" placeholder="Quantity" required="true"/></span>&nbsp;';
+  html += '<span><input class="form-control li-amount" maxlength="10" type="text" id="line-item-amount-' + lineItemCount + '" name="line-item-amount-' + lineItemCount + '" placeholder="Unit Price" required="true" /></span>&nbsp;';
   html += '<a href="javascript:void(0);" onclick="removeLineItem(' + lineItemCount + ');"><span class="glyphicon glyphicon-minus-sign"></span></a>';
   html += '</span>';
   $('#line-items').append(html);

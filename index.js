@@ -40,7 +40,7 @@ app.post('/invoice', function(req, res) {
       res.end();
     }
     else {
-      res.status(baronRes.statusCode).write(err ? err.message : 'Unknown error, please check back later.');
+      res.status(baronRes.statusCode).send(body ? body : new Error('Unknown error, please check back later.'));
       res.end();
     }
   });
