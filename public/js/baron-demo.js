@@ -60,12 +60,27 @@ $('#form').on('submit', function(e){
     type: 'POST',
     url: '/invoice',
     data: invoice,
-    success: function() {
-      alert('success');
-      $(this)[0].reset();
+    cache: false,
+    success: function(res) {
+      var successText = 'Invoice successfully create. View Invoice <a href="' + res.invoiceUrl + '" target="_blank">' + res.invoiceId + '</a>';
+      $('#status-banner-text').removeClass('alert-danger');
+      $('#status-banner-text').addClass('alert-success');
+      $('#status-banner-text').html(successText);
+      $('#status-banner').show(res);
+      $('#reset').click();
     },
     error: function(jqXHR) {
-      alert('Something bad happend' + jqXHR.responseText);
+      var error = 'Error: ';
+      if (jqXHR.status === 500) {
+        error += 'Baron seems to be down, please check back later.';
+      }
+      else {
+        error += jqXHR.responseText;
+      }
+      $('#status-banner-text').removeClass('alert-success');
+      $('#status-banner-text').addClass('alert-danger');
+      $('#status-banner-text').text(error);
+      $('#status-banner').show();
     }
   });
 });

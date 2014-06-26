@@ -28,7 +28,11 @@ app.post('/invoice', function(req, res) {
   invoice.api_key = baronApiKey;
   request.post({ url: baronInvoiceRoute, form: invoice }, function(err, baronRes, body) {
     if (!err && baronRes && baronRes.statusCode && baronRes.statusCode === 200) {
-      res.status(200).write(body);
+      var invoiceId = JSON.parse(body).id;
+      var data = {};
+      data.invoiceUrl = baronInvoiceRoute + '/' + invoiceId;
+      data.invoiceId = invoiceId;
+      res.status(200).send(data);
       res.end();
     }
     else if(err && !baronRes) {
@@ -36,7 +40,7 @@ app.post('/invoice', function(req, res) {
       res.end();
     }
     else {
-      res.status(baronRes.statusCode).write(err ? err.message : 'Unknown Error');
+      res.status(baronRes.statusCode).write(err ? err.message : 'Unknown error, please check back later.');
       res.end();
     }
   });
