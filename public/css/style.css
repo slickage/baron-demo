@@ -231,6 +231,12 @@ a:hover, a:active {
   float: left;
 }
 
+.dismiss-icon {
+  padding-top: 3px;
+  float: right;
+  cursor: pointer;
+}
+
 .center {
   text-align: center;
 }

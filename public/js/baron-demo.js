@@ -62,11 +62,11 @@ $('#form').on('submit', function(e){
     data: invoice,
     cache: false,
     success: function(res) {
-      var successText = 'Invoice successfully create. View Invoice <a href="' + res.invoiceUrl + '" target="_blank">' + res.invoiceId + '</a>';
-      $('#status-banner-text').removeClass('alert-danger');
-      $('#status-banner-text').addClass('alert-success');
+      var successText = 'Invoice successfully created. View Invoice <a href="' + res.invoiceUrl + '" target="_blank">' + res.invoiceId + '</a>';
+      $('#status-banner-wrap').removeClass('alert-danger');
+      $('#status-banner-wrap').addClass('alert-success');
       $('#status-banner-text').html(successText);
-      $('#status-banner').show(res);
+      $('#status-banner').show();
       $('#reset').click();
     },
     error: function(jqXHR) {
@@ -77,8 +77,8 @@ $('#form').on('submit', function(e){
       else {
         error += jqXHR.responseText;
       }
-      $('#status-banner-text').removeClass('alert-success');
-      $('#status-banner-text').addClass('alert-danger');
+      $('#status-banner-wrap').removeClass('alert-success');
+      $('#status-banner-wrap').addClass('alert-danger');
       $('#status-banner-text').text(error);
       $('#status-banner').show();
     }
