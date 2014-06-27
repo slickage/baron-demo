@@ -6,9 +6,9 @@ var request = require('request');
 var app = express();
 
 // Config settings
-var baronInvoiceRoute = 'http://localhost:3000/invoices';
-var baronApiKey = 'youshouldreallychangethis';
-var port = 3333;
+var baronInvoiceRoute = process.env.BARON_INVOICE_ROUTE || 'http://localhost:3000/invoices';
+var baronApiKey = process.env.BARON_API_KEY ||  'youshouldreallychangethis';
+var port = process.env.BARON_DEMO_PORT || 3333;
 
 // Rate Limiting config (5 request every 60 seconds)
 var rules = [
