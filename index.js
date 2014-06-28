@@ -47,3 +47,5 @@ app.post('/invoice', function(req, res) {
 });
 
 app.listen(port);
+console.log('Baron-Demo listening:   http://0.0.0.0:' + port);
+
