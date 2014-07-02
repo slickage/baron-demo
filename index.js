@@ -6,7 +6,8 @@ var request = require('request');
 var app = express();
 
 // Config settings
-var baronInvoiceRoute = process.env.BARON_INVOICE_ROUTE || 'http://localhost:3000/invoices';
+var publicInvoiceRoute = process.env.PUBLIC_INVOICE_ROUTE || 'http://example.com/invoices';
+var privateInvoiceRoute = process.env.PRIVATE_INVOICE_ROUTE || 'http://localhost:3000/invoices';
 var baronApiKey = process.env.BARON_API_KEY ||  'youshouldreallychangethis';
 var port = process.env.BARON_DEMO_PORT || 3333;
 
@@ -26,11 +27,11 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.post('/invoice', function(req, res) {
   var invoice = req.body;
   invoice.api_key = baronApiKey;
-  request.post({ url: baronInvoiceRoute, form: invoice }, function(err, baronRes, body) {
+  request.post({ url: privateInvoiceRoute, form: invoice }, function(err, baronRes, body) {
     if (!err && baronRes && baronRes.statusCode && baronRes.statusCode === 200) {
       var invoiceId = JSON.parse(body).id;
       var data = {};
-      data.invoiceUrl = baronInvoiceRoute + '/' + invoiceId;
+      data.invoiceUrl = publicInvoiceRoute + '/' + invoiceId;
       data.invoiceId = invoiceId;
       res.status(200).send(data);
       res.end();
