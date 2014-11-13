@@ -1,6 +1,6 @@
 # Baron Demo
 
-This is a small app that interfaces with Baron and allows users to create invoices via a web form. Invoice items that might be a security risk have been ommitted, these currently include: webhooks, metadata, and api_key.
+This is a small app that interfaces with [Baron](https://github.com/slickage/baron) and allows users to create invoices via a web form. Invoice items that might be a security risk have been ommitted, these currently include: webhooks, metadata, and api_key.
 
 ## Invoice Creation Form
 ![Invoice Creation Form](http://i.imgur.com/EzCyMbS.png)
